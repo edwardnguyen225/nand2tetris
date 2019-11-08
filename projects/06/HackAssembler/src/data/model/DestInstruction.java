@@ -4,10 +4,6 @@ public class DestInstruction {
 	String name;
 	String binaryCode;
 
-	public DestInstruction() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public DestInstruction(String name, String binaryCode) {
 		super();
 		this.name = name;

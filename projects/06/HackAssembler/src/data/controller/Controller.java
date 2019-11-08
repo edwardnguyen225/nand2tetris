@@ -16,7 +16,6 @@ public class Controller {
 	int variableValue = 16;
 
 	public Controller() {
-		// TODO Auto-generated constructor stub
 		LoadData();
 	}
 

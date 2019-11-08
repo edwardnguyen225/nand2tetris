@@ -8,7 +8,6 @@ public class MyException extends Exception {
 	private String message;
 	
 	public MyException() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public MyException(String msg) {

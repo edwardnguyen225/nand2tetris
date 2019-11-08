@@ -4,10 +4,6 @@ public class JumpInstruction {
 	String name;
 	String binaryCode;
 
-	public JumpInstruction() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public JumpInstruction(String name, String binaryCode) {
 		super();
 		this.name = name;

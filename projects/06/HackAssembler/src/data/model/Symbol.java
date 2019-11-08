@@ -3,6 +3,7 @@ package data.model;
 public class Symbol {
 	String name;
 	int value;
+	
 	public Symbol(String name, int value) {
 		super();
 		this.name = name;

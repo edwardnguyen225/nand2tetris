@@ -2,22 +2,25 @@ package app;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import data.controller.Controller;
+import exception.MyException;
 import service.InstructionService;
 
 public class App {
 
-	public static void main(String[] argsStrings) throws Exception {
-		// TODO Auto-generated method stub
+	public static void main(String[] argsStrings) throws MyException, Exception, IOException {
 		// GET FILE PATH
-		Scanner scanner = new Scanner(System.in);
+		Scanner scanner1 = new Scanner(System.in);
 		System.out.println("Enter file path:");
-		String filePathIn = scanner.nextLine();
-		//filePathIn.replaceAll("\\", "\\\\");
+		String filePathIn = scanner1.nextLine();
+		if (!filePathIn.contains(".asm")) {
+			thowInvalidFile();
+		}
 		
 		// CREAT OUTPUT FILE PATH
 		String filePathOut = filePathIn.replace("asm", "hack");
@@ -28,13 +31,13 @@ public class App {
 		File fileIn = new File(filePathIn),
 			 fileOut = new File(filePathOut);
 		FileWriter fileWriter = new FileWriter(fileOut);
-		scanner = new Scanner(fileIn);
+		Scanner scanner2 = new Scanner(fileIn);
 		// Read all line to find defied symbol between ()
 		List<String> lineList = new ArrayList<String>();
 		String str;
 		int lineCounter = 0;
-		while (scanner.hasNextLine()){
-			str = (String) scanner.nextLine();
+		while (scanner2.hasNextLine()){
+			str = (String) scanner2.nextLine();
 			str = instructionService.eraseComment(str);
 			if (str.isEmpty())
 				continue;
@@ -52,8 +55,13 @@ public class App {
 			if (str != "")
 				fileWriter.write(str + "\n");
 		}
-		scanner.close();
+		scanner1.close();
+		scanner2.close();
 		fileWriter.close();
 		System.out.println("Write file successfully");
+	}
+
+	private static void thowInvalidFile() throws MyException {
+		throw new MyException("invalid file");
 	}
 }
